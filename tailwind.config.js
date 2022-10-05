@@ -7,6 +7,7 @@
 module.exports = {
   theme: {
     fontFamily: {
+       brand: ['Movement Direct Black']
     },
     colors: {
       beige: '#FFF1D2',
@@ -15,16 +16,5 @@ module.exports = {
   },
   variants: {},
   plugins: [
-  ],
-  purge: {
-    // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      'components/**/*.vue',
-      'layouts/**/*.vue',
-      'pages/**/*.vue',
-      'plugins/**/*.js',
-      'nuxt.config.js'
-    ]
-  }
+  ]
 }
