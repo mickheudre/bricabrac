@@ -21,7 +21,7 @@
             const slug = params.event 
             const events = await $axios.$post("https://api.notion.com/v1/databases/f50d073e296d4013b0d91b731e3d7d25/query", {});
             
-            const event = events.results.find( item => {
+            const event = events.results.find( (item : any) : boolean => {
                 return item.properties.Slug.formula.string === slug
             })
             return { slug, event }

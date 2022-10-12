@@ -26,11 +26,9 @@
         name: "Agenda",
         props: ["events"],
         methods: {
-            startDate(date) {
+            startDate(date : string) {
                 const event = new Date(date)
-                const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-
-                return event.toLocaleDateString('fr-FR', options)
+                return event.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" })
             }
         }
         
