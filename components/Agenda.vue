@@ -5,14 +5,14 @@
                 <tr class="text-left bg-persian text-beige mb-12">
                     <th class="px-6 py-2 uppercase text-lg font-brand font-black" >Événement</th>
                     <th class="px-6 py-2 w-1/4 uppercase text-lg font-brand font-black">Ville</th>
-                    <th class="px-6 py-2 w-1/4 uppercase text-lg font-brand font-black">Date</th>
+                    <th class="px-6 py-2 w-1/3 uppercase text-lg font-brand font-black">Date</th>
                 </tr>
             </thead>
             <tbody class="">
                 <tr v-for="event in events" :key="event.id">
-                    <td class="px-6 py-2 underline">{{ event.properties.Name.title[0].plain_text }}</td>
+                    <td class="px-6 py-2 underline"><NuxtLink :to="event.properties.Slug.formula.string"> {{ event.properties.Name.title[0].plain_text }}</NuxtLink></td>
                     <td class="px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
-                    <td class="px-6 py-2">{{ event.properties.Date.date.start.split('T')[0] }}</td>
+                    <td class="px-6 py-2 capitalize"> {{startDate(event.properties.Debut.formula.date.start)}}</td>
                 </tr>
             </tbody>
         </table>
@@ -24,7 +24,15 @@
     
     export default Vue.extend({
         name: "Agenda",
-        props: ["events"]
+        props: ["events"],
+        methods: {
+            startDate(date) {
+                const event = new Date(date)
+                const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+
+                return event.toLocaleDateString('fr-FR', options)
+            }
+        }
         
     })
 </script>
