@@ -10,7 +10,7 @@
             </thead>
             <tbody class="">
                 <tr v-for="event in events" :key="event.id">
-                    <td class="px-6 py-2 underline"><NuxtLink :to="event.properties.Slug.formula.string"> {{ event.properties.Name.title[0].plain_text }}</NuxtLink></td>
+                    <td class="px-6 py-2 underline"><a :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td class="px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
                     <td class="px-6 py-2 capitalize"> {{dateToString(event.properties.Debut.formula.date.start)}}</td>
                 </tr>
