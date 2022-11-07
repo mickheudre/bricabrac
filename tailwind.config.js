@@ -7,7 +7,7 @@
 module.exports = {
   theme: {
     fontFamily: {
-       brand: ['Movement Direct Black']
+       brand: ['Movement Direct']
     },
     colors: {
       beige: '#FFF1D2',

@@ -1,3 +1,5 @@
+import path from 'path'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -54,5 +56,28 @@ export default {
   
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true,
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+        'postcss-nested': {}
+      }
+    },
+    preset: {
+      stage: 1 // see https://tailwindcss.com/docs/using-with-preprocessors#future-css-featuress
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          tailwindConfig: {
+            test: /tailwind\.config/,
+            chunks: 'all',
+            priority: 10,
+            name: true
+          }
+        }
+      }
+    }
   }
-}
+  }
