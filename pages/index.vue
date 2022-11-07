@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen flex flex-col justify-center items-center bg-beige">
-    <div class="my-12 text-center">
+  <div class="min-h-screen flex flex-col md:justify-center items-center bg-beige">
+    <div class="my-12 text-center w-full md:w-2/3 2xl:w-1/2 px-8">
       <h1 class="font-brand text-uppercase font-black text-persian text-4xl my-2">Bric A Brac</h1>
-      <p class="text-persian w-1/2 mx-auto">Bric à brac est un calendrier en ligne des salons d'édition. Vous pouvez y référencer vos salons de micro-édition, d'éditions indépendantes, salons anarchistes, queer fairs etc...</p>
+      <p class="text-persian mx-auto">Bric à brac est un calendrier en ligne des salons d'édition. Vous pouvez y référencer vos salons de micro-édition, d'éditions indépendantes, salons anarchistes, queer fairs etc...</p>
     </div>
-    <Agenda :events="events.results"/>
+    <Agenda class="w-full md:w-2/3 2xl:w-1/2 px-8" :events="events.results"/>
   </div>
 </template>
 
