@@ -33,7 +33,6 @@ export default Vue.extend({
       'https://api.notion.com/v1/blocks/89240a605f874d829e703cb564032c25/children',
       {}
     )
-    console.log(presentation)
     
     const events = await $axios.$post("https://api.notion.com/v1/databases/f50d073e296d4013b0d91b731e3d7d25/query", data );
     return { presentation, events };
