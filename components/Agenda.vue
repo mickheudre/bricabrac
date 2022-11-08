@@ -11,7 +11,7 @@
             <tbody class="">
                 <tr v-for="event in events" :key="event.id">
                 <template v-if="!event.properties.Fini.formula.boolean">
-                    <td  class="px-6 py-2 underline"><a :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
+                    <td  class="px-6 py-2 underline"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td  class="px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
                     <td  class="px-6 py-2 capitalize"> {{dateToString(event.properties.Debut.formula.date.start)}}</td>
                 </template>
@@ -32,7 +32,7 @@
             <tbody class="">
                 <tr v-for="event in events" :key="event.id">
                 <template v-if="event.properties.Fini.formula.boolean">
-                    <td  class="px-6 py-2 underline"><a :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
+                    <td  class="px-6 py-2 underline"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td  class=" w-1/4 px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
                     <td  class="w-1/3 px-6 py-2 capitalize"> {{dateToString(event.properties.Debut.formula.date.start)}}</td>
                 </template>
