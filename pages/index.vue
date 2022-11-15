@@ -1,7 +1,7 @@
 <template>
   <div class="">         
     <div class="w-full p-4 md:p-8 lg:p-16 flex flex-col">
-      <h1 class="font-brand text-uppercase font-black text-persian text-2xl md:my-2">Bric A Brac</h1>
+      <h1 class="font-brand text-uppercase font-black text-persian text-3xl md:my-2">Bric A Brac</h1>
       <Page :page="presentation" class="text-persian lg:w-1/2 xl:w-1/3" />
     </div>
     <div class="flex flex-col  items-center bg-beige mt-4 2xl:mt-16 ">
