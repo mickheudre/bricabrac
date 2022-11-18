@@ -5,7 +5,7 @@
       <Page :page="presentation" class="text-persian lg:w-1/2 xl:w-1/3" />
     </div>
     <div class="flex flex-col  items-center bg-beige mt-4 2xl:mt-16 ">
-      <Agenda class="w-full lg:w-2/3 2xl:w-1/2 px-2 md:px-8" :events="events.results"/>
+      <Agenda class="w-full lg:w-2/3 2xl:w-1/2 px-2 md:px-8 pb-32" :events="events.results"/>
     </div>
   </div>
 </template>

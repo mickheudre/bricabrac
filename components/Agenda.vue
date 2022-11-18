@@ -13,7 +13,7 @@
                 <template v-if="!event.properties.Fini.formula.boolean">
                     <td  class="px-4 md:px-6 py-2 underline"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td  class="px-4 md:px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
-                    <td  class="px-4 md:px-6 py-2 capitalize"> {{dateToString(event.properties.Debut.formula.date.start)}}</td>
+                    <td  class="px-4 md:px-6 py-2 capitalize"> {{ dateToString(event.properties.Date.date) }} </td>
                 </template>
                 </tr>
             </tbody>
@@ -34,7 +34,7 @@
                 <template v-if="event.properties.Fini.formula.boolean">
                     <td  class="px-4 md:px-6 py-2 underline"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td  class=" w-1/4 px-4 md:px-6 py-2">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
-                    <td  class="w-1/3 px-4 md:px-6 py-2 capitalize"> {{dateToString(event.properties.Debut.formula.date.start)}}</td>
+                    <td  class="w-1/3 px-4 md:px-6 py-2 capitalize"> {{ dateToString(event.properties.Date.date) }}</tD>
                 </template>
                 </tr>
             </tbody>
@@ -50,9 +50,24 @@
         name: "Agenda",
         props: ["events"],
         methods: {
-            dateToString(date : string) {
-                const event = new Date(date)
-                return event.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+            dateToString(date : any) {
+                const eventStart = new Date(date.start)
+
+                if (date.end != null) {
+                    const eventEnd = new Date(date.end)
+                    if (eventStart.getMonth() === eventEnd.getMonth()) {
+
+                        if (eventStart.getDay() === eventEnd.getDay()) {
+                            return eventStart.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+                        }
+
+                        return eventStart.toLocaleDateString('fr-FR', { weekday: "long", day: "numeric" }) + " → " + eventEnd.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" }) 
+ 
+                    }
+                    return eventStart.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" }) + "→" + eventEnd.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" }) 
+
+                }
+                return eventStart.toLocaleDateString('fr-FR', { weekday: "long", year: "numeric", month: "long", day: "numeric" })
             }
         }
         
