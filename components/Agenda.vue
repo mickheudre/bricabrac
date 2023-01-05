@@ -11,7 +11,7 @@
             <tbody class="">
                 <tr v-for="event in events" :key="event.id">
                 <template v-if="!event.properties.Fini.formula.boolean">
-                    <td  class="px-4 md:px-6 py-2 underline h-16"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
+                    <td  class="px-4 md:px-6 py-2  h-16 underline"><a target="_blank" :href="event.properties.URL ? event.properties.URL.url :  '/'"> {{ event.properties.Name.title[0].plain_text }} </a> </td>
                     <td  class="px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
                     <td  class="px-4 md:px-6 py-2 capitalize h-16"> {{ dateToString(event.properties.Date.date) }} </td>
                 </template>
@@ -30,7 +30,7 @@
                 </tr>                   
             </thead>
             <tbody class="">
-                <tr  v-for="event in events" :key="event.id">
+                <tr  v-for="event in events.reverse()" :key="event.id">
                 <template v-if="event.properties.Fini.formula.boolean">
                     <td  class="px-4 md:px-6 py-2 underline h-16"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                     <td  class=" w-1/4 px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>

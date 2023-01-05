@@ -25,7 +25,7 @@ export default Vue.extend({
       "sorts": [
       {
         "property": "Date",
-        "direction": "descending"
+        "direction": "ascending"
       }
       ]
     }
