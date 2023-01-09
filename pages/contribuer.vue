@@ -1,55 +1,68 @@
 <template>
     <form class="max-w-lg md:mx-auto mx-8">
-        <h2 class="mb-8 pt-16 font-brand text-persian text-3xl ">Ajouter un évenement</h2>
+        <h2 class="mb-8 pt-16 font-brand text-persian text-3xl ">Proposer un évènement</h2>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3 mb-6 md:mb-0">
-                <label class="block text-persian text-sm font-semibold mb-2" for="grid-first-name">
-                    Nom de l'évenement
+                <label class="block text-persian text-md font-bold mb-2" for="grid-name">
+                    Nom de l'évènement
                 </label>
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-name" v-model="name" type="text">
             </div>
-            <div class="w-full mb-6 px-3">
-                <label class="block text-persian text-sm font-semibold mb-2" for="grid-last-name">
-                    Dates
-                </label>
+            <div class="w-full mb-4 px-3">
+                <div class="flex mb-2 items-center" >
+                    <label class="block text-persian text-md font-bold mr-4"  for="grid-last-name">
+                        Date
+                    </label>
+                    <span :class="showEndDate ? 'hidden' : ''" class="italic text-persian text-sm" @click="displayEndDate()">Ajouter une date de fin</span>
+                    <span :class="showEndDate ? '' : 'hidden'" class="italic text-persian text-sm" @click="showEndDate = false">Supprimer la date de fin</span>
+
+                </div>
                 <div class="block w-full" >
-                    <input type="date" id="start" class="appearance-none   bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="start" >
-                    <span class="text-persian">-</span>
-                    <input type="date" id="end"  class="appearance-none  bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="end" >
+                    <input type="date" ref="startDatePicker"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="start" >
+                    <span :class="showEndDate ? '' : 'hidden'" class="text-persian">-</span>
+                    <input type="date" ref="endtDatePicker"  :class="showEndDate ? '' : 'hidden'"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="end" >
                 </div>
             </div>
-            <div class="w-full mb-6 px-3">
-                <label class="block text-persian text-sm font-semibold mb-2" for="grid-last-name">
+            <div class="w-full mb-4 px-3">
+                <label class="block text-persian text-md font-bold mb-2" for="grid-last-name">
                     Ville
                 </label>
                 <input class="appearance-none block w-full bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" v-model="city" type="text">
             </div>
-            <div class="w-full mb-6 px-3">
-                <label class="block text-persian text-sm font-semibold mb-2">
+            <div class="w-full mb-4 px-3">
+                <label class="block text-persian text-md font-bold mb-2">
                     Lien 
                 </label>
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="link" v-model="link" type="text">
             </div>
-            <div class="w-full mb-6 px-3">
-                <label class="block text-persian text-sm font-semibold mb-2">
+            <div class="w-full mb-4 px-3">
+                <label class="block text-persian text-md font-bold mb-2">
                     Mail des organisateur.rice.s
                 </label>
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" v-model="email" type="email">
             </div>
         </div>
-        <div class="md:flex md:items-center">
-            <div class="md:w-1/2">
-                <button  @click="send" data-cabin-event="request-new-event" class="bg-persian text-beige font-bold pt-3 pb-4 px-4 rounded" type="button">
-                    Ajouter l'évenement
-                </button>
-            </div>
-            <div class="md:w-2/3"></div>
-        </div>
-    </form>
+        <div class="flex items-center">
+            <button @click="send" data-cabin-event="request-new-event" 
+            class="bg-persian text-beige font-bold pt-3 pb-4 px-4 mr-4 rounded"
+            :class="running ? 'opacity-50' : ''" 
+            :disabled="running"
+            type="button">
+            Proposer l'évènement
+        </button>
+        <Spinner class="text-persian mx-4" :class="running ? 'block' : 'hidden'"/>
+    </div>
+</form>
 </template>
 
 <script>
+import Spinner from '../components/Spinner.vue'
+
 export default {
+    components: { Spinner },
+    mounted() {
+        this.start = this.dateToYMD( new Date());
+    },
     data: function() {
         return {
             errors: [],
@@ -58,25 +71,42 @@ export default {
             start: null,
             end: null,
             email: null,
-            link: null
+            link: null,
+            showEndDate: false,
+            running: false
         }
     },
     methods: {
+        dateToYMD(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1; //Month from 0 to 11
+            var y = date.getFullYear();
+            return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+        },
+        displayEndDate() {
+            this.end = this.start;
+            this.showEndDate = true;
+        },
         send() {
+            if (this.running) {
+                return;
+            }
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({name: this.name, city: this.city, start: this.start, end: this.end, link: this.link, email: this.email})
             };
-            fetch("/api/contribuer", requestOptions)
-            .then((response) => {
-                if (response.status === 200) {
-                    this.$router.push({
-                        path: '/success'
-                    })
+            this.running = true;
+            // fetch("/api/contribuer", requestOptions)
+            // .then((response) => {
+                //     if (response.status === 200) {
+                    //         this.running = false;
+                    //         this.$router.push({
+                        //             path: '/success'
+                        //         })
+                        //     }
+                        // })
+                    }
                 }
-            })
-        }
-    }
-}
-</script>
+            }
+        </script>
