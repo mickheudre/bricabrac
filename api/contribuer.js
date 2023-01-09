@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         pass: process.env.FORM_PASSWORD, // generated ethereal password
       },
     });
-    let message = `<h1>Nouvelle contribution à bric-à-brac/h1>
+    let message = `<h1> Nouvelle contribution à bric-à-brac </h1>
     <p>Nom de l'évenement ${body.name}</p>
     <p>Ville: ${body.city}</p>
     <p>Date: ${body.start}-${body.end}</p>
