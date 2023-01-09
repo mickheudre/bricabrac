@@ -57,7 +57,7 @@
         },
         created() {
             this.eventsList = [...this.events]
-            this.eventsReverse = this.eventsList.reverse()
+            this.eventsReverse = [...this.events].reverse()
         },
         components: { InscriptionIcon },
         methods: {
