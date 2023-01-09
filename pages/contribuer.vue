@@ -4,7 +4,7 @@
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3 mb-6 md:mb-0">
                 <label class="block text-persian text-md font-bold mb-2" for="grid-name">
-                    Nom de l'évènement
+                    Nom de l'événement
                 </label>
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-name" v-model="name" type="text">
             </div>
@@ -48,7 +48,7 @@
             :class="running ? 'opacity-50' : ''" 
             :disabled="running"
             type="button">
-            Proposer l'évènement
+            Proposer l'événement
         </button>
         <Spinner class="text-persian mx-4" :class="running ? 'block' : 'hidden'"/>
     </div>

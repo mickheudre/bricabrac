@@ -3,7 +3,7 @@
         <table class="table-fixed text-persian w-full">
             <thead class="my-2">
                 <tr class="text-left bg-persian border-4 border-persian text-beige mb-12">
-                    <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black md:w-1/2" >Événement</th>
+                    <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black md:w-1/2" >Évènement</th>
                     <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black">Ville</th>
                     <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black">Date</th>
                 </tr>
@@ -35,13 +35,13 @@
                         <td  class="px-4 md:px-6 py-2 underline h-16"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                         <td  class=" w-1/4 px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
                         <td  class="w-1/3 px-4 md:px-6 py-2 capitalize h-16"> {{ dateToString(event.properties.Date.date) }}</tD>
-                    </template>
-                </tr>
-            </tbody>
-        </table>
+                        </template>
+                    </tr>
+                </tbody>
+            </table>
             
-    </div>
-</template>
+        </div>
+    </template>
     
     <script lang="ts">
     import Vue from 'vue'
