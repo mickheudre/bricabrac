@@ -3,7 +3,7 @@
         <table class="table-fixed text-persian w-full">
             <thead class="my-2">
                 <tr class="text-left bg-persian border-4 border-persian text-beige mb-12">
-                    <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black md:w-1/2" >Évènement</th>
+                    <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black md:w-1/2" >Événement</th>
                     <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black">Ville</th>
                     <th class="px-4 md:px-6 py-2 uppercase text-lg font-brand font-black">Date</th>
                 </tr>
