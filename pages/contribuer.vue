@@ -97,15 +97,15 @@ export default {
                 body: JSON.stringify({name: this.name, city: this.city, start: this.start, end: this.end, link: this.link, email: this.email})
             };
             this.running = true;
-            // fetch("/api/contribuer", requestOptions)
-            // .then((response) => {
-                //     if (response.status === 200) {
-                    //         this.running = false;
-                    //         this.$router.push({
-                        //             path: '/success'
-                        //         })
-                        //     }
-                        // })
+            fetch("/api/contribuer", requestOptions)
+            .then((response) => {
+                    if (response.status === 200) {
+                            this.running = false;
+                            this.$router.push({
+                                    path: '/success'
+                                })
+                            }
+                        })
                     }
                 }
             }
