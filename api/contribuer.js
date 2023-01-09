@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       text: message, // plain text body
       html: message, // html body
     });
-    
+    console.log("Nouvelle contribution")
     return res.status(200).send("Success");
   }
   
