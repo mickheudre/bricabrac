@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody class="">
-                <tr v-for="event in events" :key="event.id">
+                <tr v-for="event in this.eventsList" :key="event.id">
                     <template v-if="!event.properties.Fini.formula.boolean">
                         <td  class="px-4 md:px-6 py-2  h-16 underline"><a target="_blank" :href="event.properties.URL ? event.properties.URL.url :  '/'"> {{ event.properties.Name.title[0].plain_text }} </a> </td>
                         <td  class="px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
@@ -51,12 +51,13 @@
         props: ["events"],
         data: function() {
             return {
+                eventsList: [],
                 eventsReverse: []
             }
         },
         created() {
-
-            this.eventsReverse = [...this.events].reverse()
+            this.eventsList = [...this.events]
+            this.eventsReverse = this.eventsList.reverse()
         },
         components: { InscriptionIcon },
         methods: {
