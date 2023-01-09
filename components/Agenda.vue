@@ -51,8 +51,8 @@
         props: ["events"],
         data: function() {
             return {
-                eventsList: [],
-                eventsReverse: []
+                eventsList: new Array<any>(),
+                eventsReverse: new Array<any>()
             }
         },
         created() {
