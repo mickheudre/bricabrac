@@ -39,7 +39,7 @@
         </div>
         <div class="md:flex md:items-center">
             <div class="md:w-1/2">
-                <button  @click="send" class="bg-persian text-beige font-bold pt-3 pb-4 px-4 rounded" type="button">
+                <button  @click="send" data-cabin-event="request-new-event" class="bg-persian text-beige font-bold pt-3 pb-4 px-4 rounded" type="button">
                     Ajouter l'évenement
                 </button>
             </div>
