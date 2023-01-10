@@ -36,17 +36,20 @@
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="link" v-model="link" type="text">
             </div>
             <div class="w-full mb-4 px-3">
+                <div>
                 <label class="block text-persian text-md font-bold mb-2">
                     Mail des organisateur.rice.s
                 </label>
+                <span></span>
+                </div>
                 <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" v-model="email" type="email">
             </div>
         </div>
         <div class="flex items-center">
             <button @click="send" data-cabin-event="request-new-event" 
             class="bg-persian text-beige font-bold pt-3 pb-4 px-4 mr-4 rounded"
-            :class="running ? 'opacity-50' : ''" 
-            :disabled="running"
+            :class="running || !readyToSubmit ? 'opacity-50' : ''" 
+            :disabled="running || !readyToSubmit"
             type="button">
             Proposer l'événement
         </button>
@@ -66,14 +69,22 @@ export default {
     data: function() {
         return {
             errors: [],
-            name: null,
-            city: null,
-            start: null,
-            end: null,
-            email: null,
-            link: null,
+            name: "",
+            city: "",
+            start: "",
+            end: "",
+            email: "",
+            link: "",
             showEndDate: false,
             running: false
+        }
+    },
+    computed: {
+        readyToSubmit() {
+            return this.name.length > 0 &&
+                    this.city.length > 0 &&
+                    this.link.length > 0 && 
+                    this.email.length > 0
         }
     },
     methods: {
