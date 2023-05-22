@@ -686,7 +686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.5.1, @nuxt/kit@npm:^3.3.3":
+"@nuxt/kit@npm:3.5.1, @nuxt/kit@npm:^3.0.0, @nuxt/kit@npm:^3.3.3":
   version: 3.5.1
   resolution: "@nuxt/kit@npm:3.5.1"
   dependencies:
@@ -807,6 +807,16 @@ __metadata:
   peerDependencies:
     vue: ^3.3.4
   checksum: 868fe6258c8f7bb5cb649c4eee5470b6001ebb03d5ca345f602bd1c8cf40c5fdfb24f40d43ffc2595f99a5454bd9f8b6d171bc7e50e6e3236f4f54e97cb9d6a3
+  languageName: node
+  linkType: hard
+
+"@nuxtjs/robots@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@nuxtjs/robots@npm:3.0.0"
+  dependencies:
+    "@nuxt/kit": ^3.0.0
+    h3: ^1.0.1
+  checksum: eb6b81b786059136030c2e06f3ed5494f60bbcfe7930774d4a2304bd3f343a7dd2c37d3f4d6edbd276f74ea3bed8b4df2303ecf6abcf3991aed619b7aaf5b189
   languageName: node
   linkType: hard
 
@@ -1573,6 +1583,20 @@ __metadata:
   checksum: e2a8e769a863f3d4ee887b5fe21f63193a891c68b612ddb4b68d82d1b5f3ff9073af066c343e9867a393fe4c2555dcb33e89b937195feb9c1613d259edfcd459
   languageName: node
   linkType: hard
+
+"bricabrac@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "bricabrac@workspace:."
+  dependencies:
+    "@nuxtjs/robots": ^3.0.0
+    "@types/node": ^18
+    autoprefixer: ^10.4.14
+    nodemailer: ^6.7.6
+    nuxt: ^3.5.1
+    postcss: ^8.4.23
+    tailwindcss: ^3.3.2
+  languageName: unknown
+  linkType: soft
 
 "browserslist@npm:^4.0.0, browserslist@npm:^4.21.3, browserslist@npm:^4.21.4, browserslist@npm:^4.21.5":
   version: 4.21.5
@@ -3035,7 +3059,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"h3@npm:^1.6.4, h3@npm:^1.6.6":
+"h3@npm:^1.0.1, h3@npm:^1.6.4, h3@npm:^1.6.6":
   version: 1.6.6
   resolution: "h3@npm:1.6.6"
   dependencies:
@@ -4278,6 +4302,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nodemailer@npm:^6.7.6":
+  version: 6.9.2
+  resolution: "nodemailer@npm:6.9.2"
+  checksum: 76a7ea0cff221914d3ebb666f26f30c9374f84dd80c1b95bb186873295ecf8dea887ed36a1e8d5d90930c36b30f85ceac062fc9efb7bc75821fe497be4103d25
+  languageName: node
+  linkType: hard
+
 "nopt@npm:^5.0.0":
   version: 5.0.0
   resolution: "nopt@npm:5.0.0"
@@ -4378,18 +4409,6 @@ __metadata:
   checksum: 955d1f9733fd5e15fd6cbacafa48382e10c7b6f404cb9adbcab6bd81e0276380f81cb1e719fa578456bd7bf44e789764a52219768ce39c14a80521964ecd7b1e
   languageName: node
   linkType: hard
-
-"nuxt-app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "nuxt-app@workspace:."
-  dependencies:
-    "@types/node": ^18
-    autoprefixer: ^10.4.14
-    nuxt: ^3.5.1
-    postcss: ^8.4.23
-    tailwindcss: ^3.3.2
-  languageName: unknown
-  linkType: soft
 
 "nuxt@npm:^3.5.1":
   version: 3.5.1

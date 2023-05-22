@@ -24,6 +24,9 @@ export default defineNuxtConfig({
         tailwindcss: {},
         autoprefixer: {},
       },
-    }
+    },
+    modules: [
+      '@nuxtjs/robots',
+    ]  
   })
   
