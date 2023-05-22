@@ -7,7 +7,10 @@ export default defineNuxtConfig({
         { name: 'description', content: "Bric à Brac est un calendrier en ligne des salons d'édition." }
       ],
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'fr'
+      }
+
     }},
     css: ['~/assets/css/main.css'],
     nitro: {
