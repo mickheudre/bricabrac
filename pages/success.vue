@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full text-persian max-w-screen">`
+    <div class="h-full text-persian bg-beige max-w-screen">`
 
         <div class="mx-auto my-auto h-full max-w-md">
         <div class="flex flex-col justify-center content-center items-center px-4 h-screen">
