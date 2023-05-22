@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full">
+    <div class="h-full bg-beige">
         <div class="py-4">
             <NuxtLink to="/" class="text-persian underline mx-8 mt-12">← Retour au site</NuxtLink>
         </div>
@@ -10,7 +10,7 @@
                     <label class="block text-persian text-md font-bold mb-2" for="grid-name">
                         Nom de l'événement
                     </label>
-                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-name" v-model="name" type="text">
+                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-name" v-model="formData.name" type="text">
                 </div>
                 <div class="w-full mb-4 px-3">
                     <div class="flex mb-2 items-center" >
@@ -22,22 +22,22 @@
                         
                     </div>
                     <div class="block w-full" >
-                        <input type="date" ref="startDatePicker"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="start" >
+                        <input type="date" ref="startDatePicker"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="formData.start" >
                         <span :class="showEndDate ? '' : 'hidden'" class="text-persian">-</span>
-                        <input type="date" ref="endtDatePicker"  :class="showEndDate ? '' : 'hidden'"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="end" >
+                        <input type="date" ref="endtDatePicker"  :class="showEndDate ? '' : 'hidden'"  class="appearance-none bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  v-model="formData.end" >
                     </div>
                 </div>
                 <div class="w-full mb-4 px-3">
                     <label class="block text-persian text-md font-bold mb-2" for="grid-last-name">
                         Ville
                     </label>
-                    <input class="appearance-none block w-full bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" v-model="city" type="text">
+                    <input class="appearance-none block w-full bg-beige text-persian  border border-persian rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" v-model="formData.city" type="text">
                 </div>
                 <div class="w-full mb-4 px-3">
                     <label class="block text-persian text-md font-bold mb-2">
                         Lien 
                     </label>
-                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="link" v-model="link" type="text">
+                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="link" v-model="formData.link" type="text">
                 </div>
                 <div class="w-full mb-4 px-3">
                     <div>
@@ -46,7 +46,7 @@
                         </label>
                         <span></span>
                     </div>
-                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" v-model="email" type="email">
+                    <input class="appearance-none block w-full bg-beige text-persian border border-persian rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" v-model="formData.email" type="email">
                 </div>
             </div>
             <div class="flex items-center">
@@ -63,66 +63,59 @@
 </div>
 </template>
 
-<script>
-import Spinner from '../components/Spinner.vue'
+<script setup lang="ts">
 
-export default {
-    components: { Spinner },
-    mounted() {
-        this.start = this.dateToYMD( new Date());
-    },
-    data: function() {
-        return {
-            errors: [],
-            name: "",
-            city: "",
-            start: "",
-            end: "",
-            email: "",
-            link: "",
-            showEndDate: false,
-            running: false
-        }
-    },
-    computed: {
-        readyToSubmit() {
-            return this.name.length > 0 &&
-            this.city.length > 0 &&
-            this.link.length > 0 && 
-            this.email.length > 0
-        }
-    },
-    methods: {
-        dateToYMD(date) {
-            var d = date.getDate();
-            var m = date.getMonth() + 1; //Month from 0 to 11
-            var y = date.getFullYear();
-            return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
-        },
-        displayEndDate() {
-            this.end = this.start;
-            this.showEndDate = true;
-        },
-        send() {
-            if (this.running) {
-                return;
-            }
-            const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({name: this.name, city: this.city, start: this.start, end: this.end, link: this.link, email: this.email})
-            };
-            this.running = true;
-            fetch("/api/contribuer", requestOptions)
-            .then((response) => {
-                if (response.status === 200) {
-                    this.running = false;
-                    this.$router.push({
-                        path: '/success'
-                    })
-                }
+const dateToYMD = (date : Date) => {
+    var d = date.getDate();
+    var m = date.getMonth() + 1; //Month from 0 to 11
+    var y = date.getFullYear();
+    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+}
+const formData = ref( {
+    name: "",
+    city: "",
+    start: dateToYMD( new Date()),
+    end: "",
+    email: "",
+    link: "",
+})      
+const errors = []
+
+const showEndDate = ref(false)
+const running = ref(false)
+
+
+const readyToSubmit = computed(() => {
+    return formData.value.name.length > 0 &&
+    formData.value.city.length > 0 &&
+    formData.value.link.length > 0 && 
+    formData.value.email.length > 0
+})
+
+
+const displayEndDate = () =>{
+    formData.value.end = formData.value.start;
+    showEndDate.value = true;
+}
+const send = () => {
+    if (running.value) {
+        return;
+    }
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData.value)
+    };
+    running.value = true;
+    fetch("/api/contribuer", requestOptions)
+    .then((response) => {
+        if (response.status === 200) {
+            running.value = false;
+            useRouter().push({
+                path: '/success'
             })
         }
-    }
+    })
 }
+
 </script>

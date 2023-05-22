@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody class="">
-                <tr v-for="event in this.eventsList" :key="event.id">
+                <tr v-for="event in data.results" :key="event.id">
                     <template v-if="!event.properties.Fini.formula.boolean">
                         <td  class="px-4 md:px-6 py-2  h-16 underline"><a target="_blank" :href="event.properties.URL ? event.properties.URL.url :  '/'"> {{ event.properties.Name.title[0].plain_text }} </a> </td>
                         <td  class="px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
@@ -30,7 +30,7 @@
                 </tr>                   
             </thead>
             <tbody class="">
-                <tr  v-for="event in this.eventsReverse" :key="event.id">
+                <tr  v-for="event in dataReverse" :key="event.id">
                     <template v-if="event.properties.Fini.formula.boolean">
                         <td  class="px-4 md:px-6 py-2 underline h-16"><a target="_blank" :href="event.properties.URL.url"> {{ event.properties.Name.title[0].plain_text }}</a></td>
                         <td  class=" w-1/4 px-4 md:px-6 py-2 h-16">{{ event.properties.Ville.rich_text[0].plain_text }}</td>
@@ -43,44 +43,46 @@
         </div>
     </template>
     
-    <script lang="ts">
-    import Vue from 'vue'
-    import InscriptionIcon from './InscriptionIcon.vue'
-    export default Vue.extend({
-        name: "Agenda",
-        props: ["events"],
-        data: function() {
-            return {
-                eventsList: new Array<any>(),
-                eventsReverse: new Array<any>()
+    <script setup lang="ts">
+    
+    const { data }  = await useFetch("https://api.notion.com/v1/databases/f50d073e296d4013b0d91b731e3d7d25/query",
+    {
+        body: {
+            "sorts": [
+            {
+                "property": "Date",
+                "direction": "ascending"
             }
+            ]
         },
-        created() {
-            this.eventsList = [...this.events]
-            this.eventsReverse = [...this.events].reverse()
-        },
-        components: { InscriptionIcon },
-        methods: {
-            dateToString(date : any) {
-                const eventStart = new Date(date.start)
-                
-                if (date.end != null) {
-                    const eventEnd = new Date(date.end)
-                    if (eventStart.getMonth() === eventEnd.getMonth()) {
-                        
-                        if (eventStart.getDay() === eventEnd.getDay()) {
-                            return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" })
-                        }
-                        
-                        return eventStart.toLocaleDateString('fr-FR', { weekday: "short", day: "numeric" }) + " → " + eventEnd.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) 
-                        
-                    }
-                    return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) + "→" + eventEnd.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) 
-                    
-                }
-                return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" })
-            }
+        method: "POST",
+        headers : {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.NOTION_TOKEN}`,
+            'Notion-Version': '2022-06-28',
         }
-        
     })
+    
+    const dataReverse = [...data.value.results].reverse()
+    
+    const dateToString = (date : any) => {
+        const eventStart = new Date(date.start)
+        
+        if (date.end != null) {
+            const eventEnd = new Date(date.end)
+            if (eventStart.getMonth() === eventEnd.getMonth()) {
+                
+                if (eventStart.getDay() === eventEnd.getDay()) {
+                    return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" })
+                }
+                
+                return eventStart.toLocaleDateString('fr-FR', { weekday: "short", day: "numeric" }) + " → " + eventEnd.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) 
+                
+            }
+            return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) + "→" + eventEnd.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" }) 
+            
+        }
+        return eventStart.toLocaleDateString('fr-FR', { weekday: "short", year: "numeric", month: "long", day: "numeric" })
+    }
+    
 </script>

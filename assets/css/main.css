@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Movement Direct";
+    font-weight: 900;
+    src: url("../fonts/Movement-DirectBlack.woff2") format("woff2");
+    font-display: swap;
+  }

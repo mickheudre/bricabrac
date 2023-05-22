@@ -1,16 +1,9 @@
 <template>
     <div>
-        <block v-for="content in this.page.results" :key="content.id" :block="content"></block>
+        <NotionBlock v-for="content in page.results"  :key="content.id" :block="content"></NotionBlock>
     </div>
 </template>
 
-<script>
-import Block from './Block.vue'
-
-export default {
-    components: { Block },
-    props : {
-        page: Object
-    }
-}
+<script setup lang="ts">
+const props =  defineProps(['page'])
 </script>

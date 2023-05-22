@@ -1,10 +1,13 @@
-/*
-** TailwindCSS Configuration File
-**
-** Docs: https://tailwindcss.com/docs/configuration
-** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
-*/
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+    "./app.vue",
+  ],
   theme: {
     fontFamily: {
        brand: ['Movement Direct']
@@ -14,7 +17,7 @@ module.exports = {
       persian: '#D98061'
     }
   },
-  variants: {},
-  plugins: [
-  ]
+  plugins: [],
+
 }
+
