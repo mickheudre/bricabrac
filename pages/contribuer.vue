@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full bg-beige">
+    <div class="h-full min-h-screen bg-beige pb-16">
         <div class="py-4">
             <NuxtLink to="/" class="text-persian underline mx-8 mt-12">← Retour au site</NuxtLink>
         </div>
