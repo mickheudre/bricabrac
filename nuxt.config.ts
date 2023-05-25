@@ -31,7 +31,12 @@ export default defineNuxtConfig({
       },
     },
     modules: [
-      '@nuxtjs/robots',
-    ]  
-  })
+      '@nuxtjs/robots'
+    ],
+    robots: { 
+      rules: {
+        Disallow: "/success" 
+    }
+  } 
   
+})
