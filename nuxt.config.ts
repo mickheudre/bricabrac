@@ -9,9 +9,14 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       htmlAttrs: {
         lang: 'fr'
-      }
-
-    }},
+      },
+      script: [
+        { 
+          async: true,
+          src: 'https://scripts.withcabin.com/hello.js',
+        }]
+      },
+    },
     css: ['~/assets/css/main.css'],
     nitro: {
       compressPublicAssets: true,
