@@ -10,3 +10,12 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+
+useHead({
+      meta: [
+      { hid: 'robots', name: 'robots', content: 'noindex' }
+      ]
+    }) 
+</script>
