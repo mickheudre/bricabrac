@@ -14,6 +14,7 @@
       <div class="flex flex-col  items-center bg-beige mt-4 2xl:mt-16 ">
         <Agenda class="w-full lg:w-2/3 2xl:w-1/2 px-2 md:px-8 pb-32" />
       </div>
+      <Footer />
   </div>
 </template>
 
@@ -53,7 +54,7 @@
     animation: marquee 7s linear infinite; 
 } 
  
- 
+
 @keyframes marquee { 
     0% { 
         transform: translate3d(var(--move-initial), 0, 0); 
