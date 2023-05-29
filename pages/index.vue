@@ -2,7 +2,7 @@
   <div class="bg-beige max-w-screen overflow-hidden">
     <div class="marquee bg-persian text-beige flex px-8 py-2  "> 
             <div class="marquee__inner" aria-hidden="true"> 
-                <a  href="grenobletypoclub.bricabrac.space" class=" w-max" v-for="item in 12"> 
+                <a  href="https://grenobletypoclub.bricabrac.space" class=" w-max" v-for="item in 12"> 
                     Grenoble Typo Club ouvre ses portes<span class="px-2">-</span> 
                 </a> 
             </div> 
