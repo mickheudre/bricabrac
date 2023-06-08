@@ -4,7 +4,7 @@
             <NuxtLink to="/" class="text-persian underline mx-8 mt-12">← Retour au site</NuxtLink>
         </div>
         <form class="max-w-lg md:mx-auto mx-8">
-            <h2 class="mb-8 pt-4 sm:pt-16 font-brand text-persian text-3xl ">Proposer un évènement</h2>
+            <h2 class="mb-8 pt-4 sm:pt-16 font-brand text-persian text-3xl ">Proposer un événement</h2>
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3 mb-6 md:mb-0">
                     <label class="block text-persian text-md font-bold mb-2" for="grid-name">
