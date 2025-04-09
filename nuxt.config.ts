@@ -10,33 +10,19 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'fr'
       },
-      script: [
-        { 
-          async: true,
-          src: 'https://scripts.withcabin.com/hello.js',
-        }]
       },
     },
-    css: ['~/assets/css/main.css'],
-    nitro: {
-      compressPublicAssets: true,
-      prerender: {
-        crawlLinks: true
-      }
-    },
-    postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
-    modules: [
-      '@nuxtjs/robots'
-    ],
-    robots: { 
-      rules: {
-        Disallow: "/success" 
+  compatibilityDate: '2024-11-01',
+  devtools: { enabled: true },
+  modules: ['@nuxtjs/tailwindcss'],
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+      routes: [
+        '/',
+        '/404.html'
+      ]
     }
-  } 
-  
+  }
 })
